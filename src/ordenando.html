@@ -4,32 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Missão Prática Mundo 2 - Nivel 2</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+    rel="stylesheet" integrity="sha384-..." crossorigin="anonymous">
 </head>
 
-<body>
-    <h1>Ordenando Valores</h1>
+<body class="container mt-4">
+    <h1 class="mb-4">Ordenando Valores</h1>
 
-    <!-- Campo de entrada numérico -->
-    <input  type="number" id="valor" placeholder="Digite um valor numérico: ">
+    <div class="mb-3">
+        <!-- Campo de entrada numérico -->
+        <label for="valor" class="form-label">Valor</label>
+        <input class="form-control" type="number" id="valor" placeholder="Digite um valor numérico: ">
+    </div>
 
     <!-- Botão para adicionar o valorinformado à lista -->
-    <button onclick="add()">Adicionar</button>
+    <button type="button" class="btn btn-primary m-2" onclick="add()">Adicionar</button>
 
-    <!-- Campo de seleção para o tipo de ordenação -->
-    <select id="Método de Ordenação">
-        <option value="bubble_sort" selected>Bubble Sort</option>
-        <option value="selection_sort">Selection Sort</option>
-        <option value="quick_sort">Quick Sort</option>
-    </select>
+    <div class="mb-3">
+        <!-- Campo de seleção para o tipo de ordenação -->
+        <label for="metodoOrdenacao" class="form-label">Método de Ordenação</label>
+        <select id="Método de Ordenação" class="form-select">
+            <option value="bubble_sort" selected>Bubble Sort</option>
+            <option value="selection_sort">Selection Sort</option>
+            <option value="quick_sort">Quick Sort</option>
+        </select>
+    </div>
 
     <!-- Botão para ordenar a lista -->
-    <button onclick="ordenar()">Ordenar</button>
+    <button type="button" class="btn btn-primary m-2" onclick="ordenar()">Ordenar</button>
 
     <!-- Botão para misturar os elementos da lista -->
-    <button  onclick="misturar()">Misturar</button>
+    <button type="button" class="btn btn-primary m-2"  onclick="misturar()">Misturar</button>
 
     <!-- Lista de valores -->
-    <ul id="valores"></ul>
+    <ul id="valores" class="list-group mt-3"></ul>
 
     <!-- Definição da tag Script com as arrow functions Javascript -->
     <script src="./exemplosjs/ordenando.js"></script>
@@ -48,6 +56,7 @@
 
             //  Cria um elemento <li>
             const node = document.createElement('li');
+            node.classList.add('list-group-item');
 
             //  Define o valor como um nó de texto e o adiciona ao node
             const textNode = document.createTextNode(inputValor.value);
@@ -65,14 +74,14 @@
 
         // Função para ordenar a lista
         function ordenar() {
-            console.log("ordenar");
+
             // Captura a lista de valores e carrega o vetor de valores
             const listaValores = document.getElementById('valores');   
             const vetorValores = Array.from(listaValores.children).map(item => eval(item.innerHTML));
 
             // Captura a lista de valores e o metodo de ordenação a utilizar
             const metodo = document.getElementById('Método de Ordenação').value;
-            console.log("metodo");
+
             // Executa a ordenação de acordo com o metodo selecionado
             if (metodo === 'bubble_sort') {
                 vetor = bubble_sort(vetorValores);
@@ -84,7 +93,7 @@
 
             // Substituindo o conteúdo da lista com os valores orfenados via innerHTML
             listaValores.innerHTML = vetorValores
-                .map(valor => `<li>${valor}</li>`)
+                .map(valor => `<li class="list-group-item">${valor}</li>`)
                 .reduce((acc, item) => acc + item, '');
 
         }
@@ -101,7 +110,7 @@
 
             // Substituindo o conteúdo da lista com os valores misturados
             listaValores.innerHTML = vetorValores
-                .map(valor => `<li>${valor}</li>`)
+                .map(valor => `<li class="list-group-item">${valor}</li>`)
                 .reduce((acc, item) => acc + item, '');
 
         }
